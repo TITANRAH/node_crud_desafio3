@@ -14,7 +14,7 @@ dotenv.config({ path: "./config/config.env" });
   
   const clienteDB = new Pool(credenciales);
 
-exports.addLike = async (titulo, url, descripcion) => {
+exports.addPost = async (titulo, url, descripcion) => {
     
     const consulta = "INSERT INTO posts values (DEFAULT, $1, $2, $3)";
     const valores = [titulo, url, descripcion];
@@ -23,7 +23,7 @@ exports.addLike = async (titulo, url, descripcion) => {
     return resultado;
 }
 
-exports.getLikes = async () => {
+exports.obtenerPosts = async () => {
     const consulta ="SELECT * FROM posts"
     const {rows} = await clienteDB.query(consulta)
     console.log('el resultado', rows);
