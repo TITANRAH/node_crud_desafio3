@@ -12,7 +12,7 @@ exports.createLike = async (req, res, next) => {
       estado: "Generado exitosamente",
     });
   } catch (err) {
-    console.log(err);
+ 
     next(
       new ErrorResponse(
         "Error, no ha sido posible generar la solicitud" + err.message + 404
@@ -27,7 +27,7 @@ exports.getResp = async (req, res, next) => {
     const posts = await getLikes();
 
     return res.json(posts)
-    
+
   } catch (err) {
     next(
       new ErrorResponse(
