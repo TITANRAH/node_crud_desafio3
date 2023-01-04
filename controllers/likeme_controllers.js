@@ -23,14 +23,11 @@ exports.createLike = async (req, res, next) => {
 
 exports.getResp = async (req, res, next) => {
   try {
+
     const posts = await getLikes();
 
-    // res.status(200).json({
-    //   status: 200,
-    //   posts,
-    // });
-
     return res.json(posts)
+    
   } catch (err) {
     next(
       new ErrorResponse(
