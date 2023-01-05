@@ -1,7 +1,6 @@
 const express = require("express");
 const ruta = express.Router();
-const { createPost, getPosts, darLike } = require("../controllers/likeme_controllers");
-
+const { createPost, getPosts, darLike, deletePost } = require("../controllers/likeme_controllers");
 
 ruta.route('/posts')
     .post(createPost)
@@ -10,9 +9,9 @@ ruta.route('/posts')
 
 ruta.route('/posts/like/:id')
     .put(darLike)
-    
-    // .delete('')
-    
 
+ruta.route('/posts/:id')
+    .delete(deletePost)
+    
 module.exports = ruta;
 

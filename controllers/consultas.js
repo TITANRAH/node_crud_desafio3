@@ -32,11 +32,13 @@ exports.addLike = async (id) => {
   const consulta =
     "UPDATE posts SET likes = COALESCE(likes,0) + 1 WHERE id = $1";
   const valores = [id];
-
   const resultado = await clienteDB.query(consulta, valores);
-
   return resultado;
 };
 
-
-
+exports.borrarPost = async (id) => {
+  const consulta = "DELETE FROM posts WHERE id = $1";
+  const valores = [id];
+  const resultado = await clienteDB.query(consulta, valores);
+  return resultado;
+};

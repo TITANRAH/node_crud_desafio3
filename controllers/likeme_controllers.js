@@ -1,4 +1,4 @@
-const { addPost, obtenerPosts, addLike } = require("./consultas");
+const { addPost, obtenerPosts, addLike, borrarPost } = require("./consultas");
 const ErrorResponse = require("../helper/errorResponse");
 
 exports.createPost = async (req, res, next) => {
@@ -47,7 +47,26 @@ exports.darLike = async (req, res, next) => {
   } catch (err) {
     next(
       new ErrorResponse(
-        " Error, no ha sido posible actualizar " + err.message + 404
+        "Error, no ha sido posible actualizar " + err.message + 404
+      )
+    );
+  }
+};
+
+exports.deletePost = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    await borrarPost(id);
+
+    res.status(200).json({
+      status: 200,
+      estado: "Post borrado exitósamente",
+    });
+  } catch (err) {
+    next(
+      new ErrorResponse(
+        "Error, no ha sido posible eliminar el post " + err.message + 404
       )
     );
   }
