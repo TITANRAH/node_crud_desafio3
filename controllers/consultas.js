@@ -17,14 +17,14 @@ exports.addPost = async (titulo, url, descripcion) => {
   const consulta = "INSERT INTO posts values (DEFAULT, $1, $2, $3)";
   const valores = [titulo, url, descripcion];
   const resultado = await clienteDB.query(consulta, valores);
-  console.log("like agregado", resultado);
+  // console.log("like agregado", resultado);
   return resultado;
 };
 
 exports.obtenerPosts = async () => {
   const consulta = "SELECT * FROM posts";
   const { rows } = await clienteDB.query(consulta);
-  console.log("el resultado", rows);
+  // console.log("el resultado", rows);
   return rows;
 };
 

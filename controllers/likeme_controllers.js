@@ -11,10 +11,11 @@ exports.createPost = async (req, res, next) => {
       status: 200,
       estado: "Generado exitósamente",
     });
+
   } catch (err) {
     next(
       new ErrorResponse(
-        "Error, no ha sido posible generar la solicitud" + err.message + 404
+        "Error, no ha sido posible agregar un nuevo post" + err.message + 404
       )
     );
   }
@@ -28,7 +29,7 @@ exports.getPosts = async (req, res, next) => {
   } catch (err) {
     next(
       new ErrorResponse(
-        "Error, no ha sido posible generar la solicitud" + err.message + 404
+        "Error, no ha sido posible obtener los posts" + err.message + 404
       )
     );
   }
@@ -61,7 +62,7 @@ exports.deletePost = async (req, res, next) => {
 
     res.status(200).json({
       status: 200,
-      estado: "Post borrado exitósamente",
+      estado: "Post eliminado exitósamente",
     });
   } catch (err) {
     next(

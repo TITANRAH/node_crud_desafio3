@@ -6,7 +6,6 @@ ruta.route('/posts')
     .post(createPost)
     .get(getPosts)
     
-
 ruta.route('/posts/like/:id')
     .put(darLike)
 
