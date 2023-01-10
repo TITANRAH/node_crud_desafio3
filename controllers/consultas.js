@@ -42,3 +42,16 @@ exports.borrarPost = async (id) => {
   const resultado = await clienteDB.query(consulta, valores);
   return resultado;
 };
+
+// puedo modificar mas campos segun yoq uiera en este caso solo titulo
+exports.modificarPost = async (titulo, id) => {
+  try {
+    const consulta = "UPDATE posts SET titulo = $1 WHERE id = $2";
+    const values = [titulo, id];
+    const result = await clienteDB.query(consulta, values);
+    return result;
+  } catch (err) {
+    console.log(err);
+    // montar helper aqui tambien
+  }
+};

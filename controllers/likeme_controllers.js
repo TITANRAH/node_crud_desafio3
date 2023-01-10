@@ -1,4 +1,4 @@
-const { addPost, obtenerPosts, addLike, borrarPost } = require("./consultas");
+const { addPost, obtenerPosts, addLike, borrarPost, modificarPost } = require("./consultas");
 const ErrorResponse = require("../helper/errorResponse");
 
 exports.createPost = async (req, res, next) => {
@@ -46,9 +46,10 @@ exports.darLike = async (req, res, next) => {
       estado: "Actualizado exitósamente",
     });
   } catch (err) {
+    console.log('error', err)
     next(
       new ErrorResponse(
-        "Error, no ha sido posible actualizar " + err.message + 404
+        `Error, no ha sido posible dar el like al post con el id ${id}` + err.message + 404
       )
     );
   }
@@ -72,3 +73,25 @@ exports.deletePost = async (req, res, next) => {
     );
   }
 };
+
+exports.putTitulo = async (req, res, next)=>{
+  try {
+    // el id viene del params en la url
+    const { id } = req.params;
+    // el titulo viene del body 
+    const {titulo} = req.body
+    // le paso el titulo y el id a la funcion que hace la consulta
+    await modificarPost(titulo, id);
+   
+    res.status(200).json({
+      status: 200,
+      estado: "Titulo modificado exitósamente",
+    });
+  } catch (err) {
+    next(
+      new ErrorResponse(
+        "Error, no ha sido posible modificar el post " + err.message + 404
+      )
+    );
+  }
+}
