@@ -1,17 +1,5 @@
-const { Pool } = require("pg");
-const dotenv = require("dotenv");
-dotenv.config({ path: "./config/config.env" });
+const {clienteDB} = require('../config/conexionBD')
 
-const credenciales = {
-  host: process.env.host,
-  user: process.env.user,
-  password: process.env.password,
-  database: process.env.database,
-  port: process.env.port,
-  allowExitOnIdle: true,
-};
-
-const clienteDB = new Pool(credenciales);
 
 exports.addPost = async (titulo, url, descripcion) => {
   const consulta = "INSERT INTO posts values (DEFAULT, $1, $2, $3)";
@@ -43,7 +31,7 @@ exports.borrarPost = async (id) => {
   return resultado;
 };
 
-// puedo modificar mas campos segun yoq uiera en este caso solo titulo
+//Puedo editar mas campos si quisiera, en este caso solo titulo
 exports.modificarPost = async (titulo, id) => {
   try {
     const consulta = "UPDATE posts SET titulo = $1 WHERE id = $2";
