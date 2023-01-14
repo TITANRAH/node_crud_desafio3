@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config/config.env" });
-const rutas = require("./routes/likeme_route");
+const rutas = require("../routes/likeme_route");
 
 const app = express();
 
